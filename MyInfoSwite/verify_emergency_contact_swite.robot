@@ -19,5 +19,5 @@ Emergency Contact Test
     Input Text    id=emgcontacts_mobilePhone    454554
     Input Text    id=emgcontacts_workPhone    7887
     Click Element    id=btnSaveEContact
-    Element Should Contain    xpath=//td[@valign='top']   sathish
+   Table should contain  id=emgcontact_list   sathish
     Close Browser

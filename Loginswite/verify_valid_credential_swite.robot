@@ -2,17 +2,20 @@
 Documentation   This suite will handle valid credential
 ...   test - TC_OH_2
 
+Test Setup   Launch Browser
+Resource    ../resource/commonfunctionality.resource
+Test Teardown  Close Browser
 
-Library  SeleniumLibrary
-Library  OperatingSystem
+Test Template   valid Credential Template
+
+Library   DataDriver   file=../test_data/Orange_data.xlsx  sheet_name=valid_credential
 
 *** Test Cases ***
-valid credential Test
-    Append To Environment Variable    path  ${EXECDIR}${/}driver
-    Open Browser  browser=chrome
-    Maximize Browser Window
-    Set Selenium Implicit Wait    30s
-    Go To    url=https://opensource-demo.orangehrmlive.com/
-    Input Text    id=txtUsername    Admin
-    Input Password    id=txtPassword    admin123
-    Click Element    id=btnLogin
+TC1
+*** Keywords ***
+valid Credential Template
+   [Arguments]  ${username}   ${password}    ${expected}
+   Input Text    id=txtUsername   ${username}
+   Input Password    id=txtPassword    ${password}
+   Click Element    id=btnLogin
+   Page Should Contain  ${expected}
